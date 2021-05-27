@@ -1,8 +1,13 @@
 #!/usr/bin/python3
-""" Class Amenity """
-from models.base_model import BaseModel
+""" State Module for HBNB project """
+from models.base_model import BaseModel, Base
+from sqlalchemy.orm import relationship
+from sqlalchemy import Column, String
 
 
-class Amenity(BaseModel):
-    """ This class menages the information for a amenity objetc """
-    name = ""
+class Amenity(BaseModel, Base):
+    """ Class Amenity represents Amanities of Place to stay """
+    __tablename__ = "amenities"
+    name = Column(String(128), nullable=False)
+    place_amenities = relationship("Place", secondary="place_amenity",
+                                   backref="Amenity")
