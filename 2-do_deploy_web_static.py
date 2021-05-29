@@ -33,13 +33,13 @@ def do_deploy(archive_path):
 
     try:
         put(archive_path, '/tmp')
-        run('mkdir -p {}'.format(dest_file))
-        run('tar -xzf /tmp/{}.tgz -C {}'.format(file_name, dest_file))
-        run('rm -f /tmp/{}.tgz'.format(file_name))
-        run('mv {}/web_static/* {}/'.format(dest_file, dest_file))
-        run('rm -rf {}/web_static/*'.format(dest_file))
-        run('rm -rf /data/web_static/current')
-        run('ln -s {} /data/web_static/current'.format(dest_file))
+        run('sudo mkdir -p {}'.format(dest_file))
+        run('sudo tar -xzf /tmp/{}.tgz -C {}'.format(file_name, dest_file))
+        run('sudo rm -f /tmp/{}.tgz'.format(file_name))
+        run('sudo mv {}/web_static/* {}/'.format(dest_file, dest_file))
+        run('sudo rm -rf {}/web_static/*'.format(dest_file))
+        run('sudo rm -rf /data/web_static/current')
+        run('sudo ln -s {} /data/web_static/current'.format(dest_file))
         print("New version deployed!")
         return True
     except:
